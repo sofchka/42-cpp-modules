@@ -8,7 +8,7 @@ int main()
 //     Reference                       | Pointer
 
 //     Second name (alias)             | Separate variable with an address
-//     Must be initialized             | Can be uninitialized / nullptr
+//     Must be initialized             | Can be uninitialized / null
 //     Cannot change what it refers to | Can point to something else
 //     Used like a normal variable     | Needs * to access value
 

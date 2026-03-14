@@ -7,7 +7,7 @@ class HumanB
 {
 private:
     std::string name;
-    Weapon* weapon; // Weapon object (not a reference, not strictly required for HumanB + can be nullptr)
+    Weapon* weapon; // Weapon object (not a reference, not strictly required for HumanB + can be tr)
 
 public:
     HumanB(const std::string& name);
