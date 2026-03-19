@@ -45,3 +45,5 @@
 *.jar
 *.war
 *.ear
+
+.vscode
