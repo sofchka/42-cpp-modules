@@ -34,7 +34,7 @@ Fixed::Fixed(const int value)
 Fixed::Fixed(const float value)
 {
     std::cout << "Float constructor called\n";
-    rawBits = roundf(value * (1 << fractionalBits)); // qanzi value n float a << chem kara anem 
+    rawBits = roundf(value * (1 << fractionalBits));
 }
 
 float Fixed::toFloat() const

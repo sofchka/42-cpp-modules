@@ -3,7 +3,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap // virtual inheritance to avoid duble grandparent in DiamondTrap
 {
 public:
     FragTrap();

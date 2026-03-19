@@ -3,7 +3,7 @@
 ClapTrap::ClapTrap()
 {
     std::cout << "Default constructor called\n";
-    name = "default"; // kam el null
+    name = "";
     hitPoints = 10;
     energyPoints = 10;
     attackDamage = 0;

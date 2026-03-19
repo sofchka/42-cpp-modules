@@ -11,10 +11,10 @@ private:
     static const int fractionalBits = 8;
 
 public:
-    Fixed();                  // Default constructor
-    Fixed(const Fixed& src);  // Copy constructor
-    Fixed& operator=(const Fixed& rhs); // Copy assignment operator
-    ~Fixed();                 // Destructor
+    Fixed(); 
+    Fixed(const Fixed& src); 
+    Fixed& operator=(const Fixed& rhs);
+    ~Fixed();  
 
     Fixed(const int value); // Constructor from int
     Fixed(const float value); // Constructor from float

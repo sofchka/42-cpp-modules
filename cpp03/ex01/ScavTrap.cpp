@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap("default")
+ScavTrap::ScavTrap() : ClapTrap("")
 {
     this->hitPoints = 100;
     this->energyPoints = 50;

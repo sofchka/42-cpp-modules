@@ -13,10 +13,10 @@ protected:
     std::string name;
 
 public:
-    ClapTrap();                  // Default constructor
-    ClapTrap(const ClapTrap& src);  // Copy constructor
-    ClapTrap& operator=(const ClapTrap& rhs); // Copy assignment operator
-    ~ClapTrap();                 // Destructor
+    ClapTrap();
+    ClapTrap(const ClapTrap& src);
+    ClapTrap& operator=(const ClapTrap& rhs);
+    ~ClapTrap();
     
     ClapTrap(const std::string name);
 

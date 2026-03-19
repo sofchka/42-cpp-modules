@@ -25,6 +25,5 @@ public:
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
 // std::cout << a == operator<<(std::cout, a);
-// 
 
 #endif
