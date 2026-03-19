@@ -10,7 +10,11 @@ int main()
     while (true)
     {
         std::cout << "Enter command (ADD, SEARCH, EXIT): ";
-        std::getline(std::cin, command);
+        if (!std::getline(std::cin, command))
+        {
+            std::cout << "\nExiting..." << std::endl;
+            break;
+        }
 
         if (command == "ADD")
         {
@@ -24,9 +28,7 @@ int main()
             std::cout << std::endl;
         }
         else if (command == "EXIT")
-        {
             break;
-        }
     }
     return 0;
 }

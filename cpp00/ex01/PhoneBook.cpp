@@ -9,7 +9,12 @@ static std::string getInput(const std::string &prompt)
     while (input.empty())
     {
         std::cout << prompt;
-        std::getline(std::cin, input); // Read entire line including spaces into input with newline removed!
+        if (!std::getline(std::cin, input)) // Read entire line including spaces into input with newline removed!
+        {
+            std::cin.clear();
+            std::cout << "\nExiting..." << std::endl;
+            exit(1);
+        }
     }
     return input;
 }
@@ -27,6 +32,16 @@ PhoneBook::PhoneBook() // constructor to initialize count and index
     index = 0;
 }
 
+static bool isDigits(const std::string &str)
+{
+    for (size_t i = 0; i < str.length(); i++)
+    {
+        if (!std::isdigit(str[i]))
+            return false;
+    }
+    return true;
+}
+
 void PhoneBook::addContact()
 {
     Contact &c = contacts[index]; // it points to our contacts array at position index from PhoneBook class
@@ -34,7 +49,17 @@ void PhoneBook::addContact()
     c.setFirstName(getInput("First name: "));
     c.setLastName(getInput("Last name: "));
     c.setNickname(getInput("Nickname: "));
-    c.setPhoneNumber(getInput("Phone number: "));
+    while (true)
+    {
+        c.setPhoneNumber(getInput("Phone number: "));
+        if (c.getPhoneNumber().empty() || !isDigits(c.getPhoneNumber()))
+        {
+            std::cout << "    !  Phone number invalid." << std::endl;
+            continue;
+        }
+        break;
+    }
+
     c.setDarkestSecret(getInput("Darkest secret: "));
 
     if (count < 8)
@@ -45,6 +70,7 @@ void PhoneBook::addContact()
 void PhoneBook::searchContact() const
 {
     int i;
+    std::string input_index;
 
     if (count == 0)
     {
@@ -66,9 +92,17 @@ void PhoneBook::searchContact() const
     }
 
     std::cout << "Enter index: ";
-    std::cin >> i; // read integer input for index with newline still in the buffer 
-    std::cin.ignore(); // ignore the newline character left in the buffer after reading
+    if (!std::getline(std::cin, input_index)) // read integer input for index with newline still in the buffer 
+    {
+        std::cin.clear();
+        std::cout << "\nExiting..." << std::endl;
+        exit(1);
+    }
 
+    if (isDigits(input_index))
+        i = std::atoi(input_index.c_str()); // convert input string to integer index
+    else
+        i = -1; // set to invalid index if input is not a number
     if (i < 0 || i >= count)
     {
         std::cout << "Invalid index" << std::endl;
