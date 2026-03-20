@@ -11,6 +11,9 @@ OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
+%.o : %.c
+	$(CC) $(CFLAGS) -I$(MLX_PATH) -c  $< -o $@
+
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -o $(NAME)
 
