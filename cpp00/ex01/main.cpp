@@ -19,7 +19,6 @@ int main()
         if (command == "ADD")
         {
             phoneBook.addContact();
-            std::cout << "Contact added successfully." << std::endl;
             std::cout << std::endl;
         }
         else if (command == "SEARCH")

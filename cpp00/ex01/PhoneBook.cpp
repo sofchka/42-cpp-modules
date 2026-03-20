@@ -12,8 +12,8 @@ static std::string getInput(const std::string &prompt)
         if (!std::getline(std::cin, input)) // Read entire line including spaces into input with newline removed!
         {
             std::cin.clear();
-            std::cout << "\nExiting..." << std::endl;
-            exit(1);
+            std::cout << "\n Exiting..." << std::endl;
+            return "";
         }
     }
     return input;
@@ -44,27 +44,74 @@ static bool isDigits(const std::string &str)
 
 void PhoneBook::addContact()
 {
-    Contact &c = contacts[index]; // it points to our contacts array at position index from PhoneBook class
+    Contact &c = contacts[index];
 
-    c.setFirstName(getInput("First name: "));
-    c.setLastName(getInput("Last name: "));
-    c.setNickname(getInput("Nickname: "));
+    std::string input;
+
+    input = getInput("First name: ");
+    if (input.empty())
+        return;
+    c.setFirstName(input);
+
+    input = getInput("Last name: ");
+    if (input.empty())
+        return;
+    c.setLastName(input);
+
+    input = getInput("Nickname: ");
+    if (input.empty())
+        return;
+    c.setNickname(input);
+
     while (true)
     {
-        c.setPhoneNumber(getInput("Phone number: "));
-        if (c.getPhoneNumber().empty() || !isDigits(c.getPhoneNumber()))
+        input = getInput("Phone number: ");
+        if (!isDigits(input))
         {
             std::cout << "    !  Phone number invalid." << std::endl;
             continue;
         }
+		else if (input.empty())
+        	return;
+        c.setPhoneNumber(input);
         break;
     }
 
-    c.setDarkestSecret(getInput("Darkest secret: "));
+    input = getInput("Darkest secret: ");
+    if (input.empty())
+        return;
+    c.setDarkestSecret(input);
 
     if (count < 8)
         count++;
     index = (index + 1) % 8;
+
+	std::cout << "Contact added successfully." << std::endl;
+}
+
+static int	my_atoi(const char *str)
+{
+	int	i;
+	int	sign;
+	int	numb;
+
+	i = 0;
+	sign = 1;
+	numb = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		numb = (numb * 10) + (str[i] - '0');
+		i++;
+	}
+	return (numb * sign);
 }
 
 void PhoneBook::searchContact() const
@@ -92,15 +139,15 @@ void PhoneBook::searchContact() const
     }
 
     std::cout << "Enter index: ";
-    if (!std::getline(std::cin, input_index)) // read integer input for index with newline still in the buffer 
+    if (!std::getline(std::cin, input_index)) // read integer input for index with newline still in the buffer
     {
         std::cin.clear();
         std::cout << "\nExiting..." << std::endl;
-        exit(1);
+        return ;
     }
 
     if (isDigits(input_index))
-        i = std::atoi(input_index.c_str()); // convert input string to integer index
+        i = my_atoi(input_index.c_str()); // convert input string to integer index
     else
         i = -1; // set to invalid index if input is not a number
     if (i < 0 || i >= count)
