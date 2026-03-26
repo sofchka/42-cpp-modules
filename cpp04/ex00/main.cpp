@@ -6,33 +6,36 @@
 
 int main()
 {
-    // std::cout << "=== Correct Polymorphism ===" << std::endl;
-    // const Animal* meta = new Animal();
-    // const Animal* j = new Dog();
-    // const Animal* i = new Cat();
+    std::cout << "Correct Polymorphism" << std::endl;
+    const Animal* meta = new Animal();
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
 
-    // std::cout << j->getType() << " " << std::endl;
-    // std::cout << i->getType() << " " << std::endl;
+    std::cout << j->getType() << " " << std::endl; // " " is for better readability
+    std::cout << i->getType() << " " << std::endl;
 
-    // i->makeSound();
-    // j->makeSound();
-    // meta->makeSound();
+    i->makeSound();
+    j->makeSound();
+    meta->makeSound();
 
-    // delete meta;
-    // delete j;
-    // delete i;
+    delete meta;
+    delete j;
+    delete i;
 
-    // std::cout << "\n=== Wrong Polymorphism ===" << std::endl;
-    // const WrongAnimal* wrongMeta = new WrongAnimal();
-    // const WrongAnimal* wrongCat = new WrongCat();
+    std::cout << "\nWrong Polymorphism" << std::endl;
+    const WrongAnimal* wrongMeta = new WrongAnimal();
+    const WrongAnimal* wrongCat = new WrongCat();
+    const WrongCat* wrongCat2 = new WrongCat();
 
-    // std::cout << wrongCat->getType() << " " << std::endl;
+    std::cout << wrongCat->getType() << " " << std::endl;
 
-    // wrongCat->makeSound(); // will call WrongAnimal's version
-    // wrongMeta->makeSound();
+    wrongCat->makeSound(); // will call WrongAnimal's version
+    wrongMeta->makeSound();
+    wrongCat2->makeSound(); // will call WrongCats's version
 
-    // delete wrongMeta;
-    // delete wrongCat;
+    delete wrongMeta;
+    delete wrongCat;
+    delete wrongCat2;
 
     return 0;
 }

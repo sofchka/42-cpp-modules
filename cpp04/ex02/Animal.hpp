@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include "Brain.hpp"
 
 class Animal
 {
@@ -12,10 +13,10 @@ protected:
 public:
     Animal();
     Animal(const Animal& other);
-    virtual ~Animal(); // obligatoire for child to be cleaned up
+    virtual ~Animal();
     Animal& operator=(const Animal& other);
 
-    virtual void makeSound() const;
+    virtual void makeSound() const = 0; // pure virtual function, making Animal an abstract class
     std::string getType() const;
 };
 
