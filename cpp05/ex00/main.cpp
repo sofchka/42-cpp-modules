@@ -4,29 +4,31 @@ int main()
 {
 	try
 	{
-		Bureaucrat first_bureaucrat("Alice", 2);
+		Bureaucrat bob("Bob", 10);
 
-		std::cout << first_bureaucrat << std::endl;
+		std::cout << bob << std::endl;
 
-		first_bureaucrat.IncrementGrade();
+		bob.IncrementGrade();
 
-		std::cout << first_bureaucrat << std::endl;
+		std::cout << bob << std::endl;
 
-		first_bureaucrat.IncrementGrade();
+		bob.DecrementGrade();
+
+		std::cout << bob << std::endl;
 	}
-	catch (std::exception &exception)
+	catch (std::exception &e)
 	{
-		std::cout << exception.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
-
-	std::cout << std::endl;
 
 	try
 	{
-		Bureaucrat second_bureaucrat("Bob", 151);
+		Bureaucrat bad("Bad", 151);
 	}
-	catch (std::exception &exception)
+	catch (std::exception &e)
 	{
-		std::cout << exception.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
+
+	return 0;
 }
