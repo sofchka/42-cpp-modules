@@ -1,30 +1,58 @@
-#include "identify.hpp"
-
 #include <iostream>
+#include <Array.hpp>
 
-int main()
+#define MAX_VAL 750
+
+int main(int, char**)
 {
-    Base *one = new A();
-    Base *two = new B();
-    Base *three = new C();
+	Array<int> numbers(MAX_VAL);
+	int* mirror = new int[MAX_VAL];
 
-    std::cout << "Pointer tests:" << std::endl;
-    identify(one);
-    identify(two);
-    identify(three);
+	srand(time(NULL));
 
-    delete one;
-    delete two;
-    delete three;
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		const int value = rand();
+		numbers[i] = value;
+		mirror[i] = value;
+	}
 
-    A objectA;
-    B objectB;
-    C objectC;
+	{
+		Array<int> temporary = numbers;
+		Array<int> copied(temporary);
+	}
 
-    std::cout << "Reference tests:" << std::endl;
-    identify(objectA);
-    identify(objectB);
-    identify(objectC);
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		if (mirror[i] != numbers[i])
+		{
+			std::cerr << "didn't save the same value!!" << std::endl;
+			delete[] mirror;
+			return 1;
+		}
+	}
 
-    return 0;
+	try
+	{
+		numbers[-2] = 0;
+	}
+	catch (const std::exception& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+
+	try
+	{
+		numbers[MAX_VAL] = 0;
+	}
+	catch (const std::exception& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+
+	for (int i = 0; i < MAX_VAL; i++)
+		numbers[i] = rand();
+
+	delete[] mirror;
+	return 0;
 }
